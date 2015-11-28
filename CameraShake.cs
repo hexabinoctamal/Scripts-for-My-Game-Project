@@ -8,7 +8,7 @@ public class CameraShake : MonoBehaviour {
 
     float shakeAmount = 0;
     float countDown;
-    float halfOfCountDown;
+    //float halfOfCountDown;
 
     void Awake()
     {
@@ -20,7 +20,7 @@ public class CameraShake : MonoBehaviour {
     {
         shakeAmount = amt;
         countDown = length;
-        halfOfCountDown = countDown / 2;
+        //halfOfCountDown = countDown / 2;
         InvokeRepeating("DoShake", 0, 0.01f);
         Invoke("StopShake", length);
     }
@@ -37,7 +37,6 @@ public class CameraShake : MonoBehaviour {
                 countDown -= 0.06f;
 
             Vector3 camPos = mainCam.transform.position;
-            Vector3 initPos = mainCam.transform.position;
 
             //multiplied by countDown to slow the shake movement down to no movement
             float offsetX = (Random.value * shakeAmount * 2 - shakeAmount)*countDown;
@@ -56,9 +55,7 @@ public class CameraShake : MonoBehaviour {
 
                 //Debug.Log("x: " + camPos.x + " y: " + camPos.y);
 
-                //this part makes sure this will restrict the camera shaking to stay above the ground
-                //in this case, if the the shake magnitude in the y-direction is 
-                //shit i forgot
+
                 if (camPos.y + offsetY >= 1.0f)
                     mainCam.transform.position = camPos;
                 else
@@ -66,6 +63,10 @@ public class CameraShake : MonoBehaviour {
             }
             */
 
+            //this part makes sure this will restrict the camera shaking to stay above the ground
+            //in this case, if the the shake magnitude in the y-direction is too great,
+            //I will reposition the camera back up 2m above the ground (ground being y = 0)
+            //I noticed this isn't always effective so get back to this.
             if (camPos.y + offsetY >= 1.0f)
                 mainCam.transform.position = camPos;
             else

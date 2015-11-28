@@ -49,6 +49,7 @@ public class PlayerHealth : MonoBehaviour {
             return false;
     }
 
+    //remember to put actual death of player to GameMaster.cs
     void YouDied()
     {
         //create death particles and destroy in 2 seconds
@@ -81,6 +82,10 @@ public class PlayerHealth : MonoBehaviour {
         //if you hit an enemy and you're not dead
         if (obj.gameObject.CompareTag("Enemy") && !isDead)
         {
+            //this part is temporary
+            //I decided to give the player 3 lives
+            //not good practice, need to set up a system where this is better
+            //put in GameMaster.cs
             if (playerHP > 0)
             {
                 playerHP--;

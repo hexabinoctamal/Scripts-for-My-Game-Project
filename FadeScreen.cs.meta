@@ -1,11 +1,10 @@
 fileFormatVersion: 2
-guid: 475f86639c237434f9215c4a39567365
-timeCreated: 1448703144
+guid: 36670e072728e074292276ae0e2442db
+timeCreated: 1448709753
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences:
-  - camera: {fileID: 11493646, guid: 44dd0a854ca50d4438fd183630cbeecf, type: 2}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
