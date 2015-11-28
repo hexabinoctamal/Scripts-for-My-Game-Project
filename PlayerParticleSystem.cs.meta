@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 0669686ad58f4e446adc7982064f2272
+timeCreated: 1448400203
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - thePlayerScript: {instanceID: 0}
+  - thePlayerStatus: {instanceID: 0}
+  - theParticles: {fileID: 105226, guid: 514c0ffdd3e5ed540907cfa53eb13c2a, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

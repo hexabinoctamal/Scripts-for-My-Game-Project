@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: b96c3627a3c31e047b1c122e5c94c0ee
+timeCreated: 1448689059
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - deathParticles: {instanceID: 0}
+  - camShake: {fileID: 11493646, guid: 44dd0a854ca50d4438fd183630cbeecf, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
