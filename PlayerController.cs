@@ -47,6 +47,10 @@ public class PlayerController : MonoBehaviour {
             MoveBall();
 		}//if not dead
 
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.LoadLevel(Application.loadedLevel - 1);
+        }
 	}
 
 

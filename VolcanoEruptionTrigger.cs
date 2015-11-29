@@ -26,6 +26,14 @@ public class VolcanoEruptionTrigger : MonoBehaviour {
 
     }
 
+    public void EruptVolcano()
+    {
+        destroyCubeErupt = Instantiate(cubeErupt,
+                cubeEruptLocation.position,
+                Quaternion.identity) as GameObject;
+
+        Destroy(destroyCubeErupt, 1.2f);
+    }
 
 
 

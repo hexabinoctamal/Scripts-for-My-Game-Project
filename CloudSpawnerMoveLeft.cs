@@ -10,7 +10,7 @@ public class CloudSpawnerMoveLeft : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
     {
-        InvokeRepeating("CloudSpawner", 0f, 2f);
+        InvokeRepeating("CloudSpawner", 0f, 4f);
         //CloudSpawner();
 	}
 
@@ -18,7 +18,7 @@ public class CloudSpawnerMoveLeft : MonoBehaviour {
     {
         Transform boxSize = GetComponent<Transform>();
 
-        Debug.Log(boxSize.localScale);
+        //Debug.Log(boxSize.localScale);
         /*
          * The values given are specific for the main menu 
          * if needed to reuse this script (or game object) for different settings,
@@ -31,7 +31,8 @@ public class CloudSpawnerMoveLeft : MonoBehaviour {
         */ 
         //Vector3 randomSpotWithinGrid = new Vector3(transform.position.x, Random.Range(95f, 520f), Random.Range(760f, 1120f));
 
-        //After typing all that garbage above, I ended up making it flexible to wherever the gameObject is...lol
+        //After typing all that garbage above, I ended up making it flexible to wherever the gameObject is depending on 
+        //the size of the game object...lol
         Vector3 randomSpotWithinGrid = new Vector3(transform.position.x,
                         transform.position.y + Random.Range(-boxSize.localScale.y/2, boxSize.localScale.y/2),
                         transform.position.z + Random.Range(-boxSize.localScale.z/2, boxSize.localScale.z/2));
@@ -46,7 +47,7 @@ public class CloudSpawnerMoveLeft : MonoBehaviour {
 
     IEnumerator CloudMoving(GameObject cloud)
     {
-        float randomSpeedPerCloud = Random.Range(1f, 3f);
+        float randomSpeedPerCloud = Random.Range(0.5f, 2f);
         //Debug.Log(randomSpeedPerCloud);
 
         //this loop will finish roughly around 16-17 seconds when i < 1000.
