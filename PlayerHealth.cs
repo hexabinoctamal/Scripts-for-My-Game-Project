@@ -60,6 +60,7 @@ public class PlayerHealth : MonoBehaviour {
         isDead = true;
         camShake.Shake(0.3f, lenghtOfDeathTime);
         StartCoroutine(RespawnPlayer());
+        playerHP = 3; //restore health after dying
     }
 
     IEnumerator RespawnPlayer()
@@ -88,12 +89,11 @@ public class PlayerHealth : MonoBehaviour {
             //put in GameMaster.cs
             if (playerHP > 0)
             {
-                playerHP--;
+                PlayerGotHit();
             }
             else if (playerHP <= 0)
             {
                 YouDied();
-                playerHP = 3;
             }
         }//if you hit an enemy and you are not currently dead
     }
@@ -106,14 +106,23 @@ public class PlayerHealth : MonoBehaviour {
         {
             if (playerHP > 0)
             {
-                playerHP--;
+                PlayerGotHit();
             }
             else if (playerHP <= 0)
             {
                 YouDied();
-                playerHP = 3;
             }
         }
+    }
+
+    void PlayerGotHit()
+    {
+        playerHP--;
+        //figure out how to have camera shake a bit
+        //but not the same kind when you die
+        //also if playerHP > 0, only do the "hit" shake
+        //else not. have it do the death shake instead, which should just happen by default
+ 
     }
 
     public bool GetIsPlayerDead()

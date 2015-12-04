@@ -75,8 +75,6 @@ public class CameraShake : MonoBehaviour {
             //mainCam.transform.position = (camPos + Random.insideUnitSphere * countDown) * 1 + camPos*0;
             //Debug.Log(mainCam.transform.position);
         }
-
-
     }
 
     void StopShake()
