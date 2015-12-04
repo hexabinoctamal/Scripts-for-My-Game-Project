@@ -47,6 +47,8 @@ public class PlayerController : MonoBehaviour {
             MoveBall();
 		}//if not dead
 
+        //Take this out when done
+        //this is only temporary during testing
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Application.LoadLevel(Application.loadedLevel - 1);

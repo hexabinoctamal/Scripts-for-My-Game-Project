@@ -18,6 +18,7 @@ public class CameraDropCubeMenu : MonoBehaviour {
     {
         theUI.SetActive(false);
         transform.position = new Vector3(0f, startingPosition, 0f);
+        GetComponent<FadeScreen>().SetFadeSpeed(0.6f);
         GetComponent<FadeScreen>().BeginFade(-1);
         cameraDropCube = GetComponent<Rigidbody>();
         cameraDropCube.velocity = Vector3.down * 1000f;
@@ -30,7 +31,10 @@ public class CameraDropCubeMenu : MonoBehaviour {
         {
             if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Joystick1Button1))
             {
-                gm.LoadNextLevel();
+                GetComponent<FadeScreen>().SetFadeSpeed(0.4f);
+                GetComponent<FadeScreen>().BeginFade(1);   
+                //gm.LoadNextLevel();
+                StartCoroutine(GoingToNextLevel());
             }
 
             if (Input.GetKeyDown(KeyCode.Escape))
@@ -44,6 +48,11 @@ public class CameraDropCubeMenu : MonoBehaviour {
     {
         theUI.SetActive(true);
     }
-	
+
+    IEnumerator GoingToNextLevel()
+    {
+        yield return new WaitForSeconds(5f);
+        gm.LoadNextLevel();
+    }
 	
 }

@@ -23,6 +23,11 @@ public class IntroCameraSwitchTrigger : MonoBehaviour {
         //if x+1 is off, turn it on
         if (obj.CompareTag("Player"))
         {
+            if (currentCamera >= 2)
+            {
+                StartCoroutine(WaitToLoadLevel());
+            }
+
             if (cameraSwitchingScript.theCameras[currentCamera].activeSelf)
             {
                 cameraSwitchingScript.theCameras[currentCamera + 1].SetActive(true);
@@ -36,6 +41,12 @@ public class IntroCameraSwitchTrigger : MonoBehaviour {
         }
     }
 
+    IEnumerator WaitToLoadLevel()
+    {
+        yield return new WaitForSeconds(5f);
+        currentCamera = 0; // reset counter just incase we go back to the level
+        Application.LoadLevel(Application.loadedLevel + 1);
+    }
 
     void GoBlack()
     {

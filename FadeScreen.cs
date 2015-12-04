@@ -40,6 +40,11 @@ public class FadeScreen : MonoBehaviour {
         return (fadeSpeed);
     }
 
+    public void SetFadeSpeed(float _fadeSpeed)
+    {
+        fadeSpeed = _fadeSpeed;
+    }
+
     // OnLevelWasLoaded is called when a level is loaded. It takes loaded level index (int) as a parameter so you can limit the fade in to certain scenes.
     void OnLevelWasLoaded()
     {
