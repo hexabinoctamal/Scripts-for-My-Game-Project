@@ -17,7 +17,6 @@ public class IntroCameraSwitching : MonoBehaviour {
         //set all cameras off at the beginning
         for (int i = 0; i < theCameras.Length; i++)
             theCameras[i].SetActive(false);
-        
     }
 
     void Start()
