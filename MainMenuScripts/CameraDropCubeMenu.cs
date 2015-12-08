@@ -6,12 +6,16 @@ public class CameraDropCubeMenu : MonoBehaviour {
    
     Rigidbody cameraDropCube;
     float startingPosition = 3000f;
+    float distanceToGround;
+    Vector3 move;
 
     [SerializeField]
     GameObject theUI;
 
     [SerializeField]
     GameMaster gm;
+
+    
 
 	// Use this for initialization
 	void Start () 
@@ -21,8 +25,10 @@ public class CameraDropCubeMenu : MonoBehaviour {
         GetComponent<FadeScreen>().SetFadeSpeed(0.6f);
         GetComponent<FadeScreen>().BeginFade(-1);
         cameraDropCube = GetComponent<Rigidbody>();
-        cameraDropCube.velocity = Vector3.down * 1000f;
-        Invoke("ShowUI", 7f);
+        cameraDropCube.velocity = Vector3.down * 500f;
+        Invoke("ShowUI", 6f);
+
+        distanceToGround = GetComponent<Collider>().bounds.extents.y;
 	}
 
     void Update()
@@ -44,6 +50,20 @@ public class CameraDropCubeMenu : MonoBehaviour {
         }
     }
 
+    void FixedUpdate()
+    { 
+        //if the cube hasn't hit the floor yet
+        if (!IsGrounded())
+        {
+            move = Vector3.down * 200f;
+        }
+        else
+            move = Vector3.zero;
+
+        cameraDropCube.AddForce(move);
+    }
+
+
     void ShowUI()
     {
         theUI.SetActive(true);
@@ -54,5 +74,13 @@ public class CameraDropCubeMenu : MonoBehaviour {
         yield return new WaitForSeconds(5f);
         gm.LoadNextLevel();
     }
-	
+
+    bool IsGrounded()
+    {
+        //1.1 because if the ball is rolling on slants, you'll still be able to control it 
+        //it wont receive it as not on the ground if it is any lower
+        //thus not being able to control it
+        return Physics.Raycast(transform.position, Vector3.down, distanceToGround + 1.1f);
+    }
+
 }

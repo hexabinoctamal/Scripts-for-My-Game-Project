@@ -10,7 +10,7 @@ public class VolcanoTimer : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
     {
-        InvokeRepeating("VolcanoErupter", 7f, 12f);
+        InvokeRepeating("VolcanoErupter", 6f, 12f);
 	}
 
     void VolcanoErupter()

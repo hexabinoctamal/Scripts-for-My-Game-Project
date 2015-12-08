@@ -59,8 +59,18 @@ public class PlayerController : MonoBehaviour {
 
     void MoveBall()
     {
-        //keep the ball grounded
-        move.y = 0f;
+        //if you are not on the ground
+        if (!IsGrounded())
+        {
+            Debug.Log("I am up");
+            move.y = -15f;
+        }
+        else
+        {
+            //keep the ball grounded
+            Debug.Log("On Ground");
+            move.y = 0f;
+        }
 
         if (player.velocity.z < maxSpeedForward && player.velocity.z >= 0f)
             MoveForwardConstantly();
@@ -76,6 +86,8 @@ public class PlayerController : MonoBehaviour {
             MoveLeftRight();
         else
             move.x = 0f;
+
+       
 
         player.AddForce(move);
     }
