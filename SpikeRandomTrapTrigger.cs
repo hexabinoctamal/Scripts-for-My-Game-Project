@@ -51,7 +51,6 @@ public class SpikeRandomTrapTrigger : MonoBehaviour {
     {
         if (obj.gameObject.CompareTag("Player"))
         {
-
             for (int i = 0; i < theSpikes.Length; i++)
             {
                 Destroy(destroySpikes[i], 3f);
