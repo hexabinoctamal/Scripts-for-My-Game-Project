@@ -50,6 +50,16 @@ public class CloudSpawnerMoveLeft : MonoBehaviour {
         float randomSpeedPerCloud = Random.Range(0.5f, 2f);
         //Debug.Log(randomSpeedPerCloud);
 
+        // ******************************************************************
+        // ******************************************************************
+        // PROBLEM WITH THIS
+        // The times i have listed varies between computers
+        // So even though i < 4000, the time it takes to complete varies +/-
+        // therefore this isn't reliable. so redo this part
+        // ******************************************************************
+        // ******************************************************************
+
+
         //this loop will finish roughly around 16-17 seconds when i < 1000.
         // ~34 seconds when i < 2000, ~41 at i < 2500, ~67 at i < 4000
         for (int i = 0; i < 4000 ; i++)
