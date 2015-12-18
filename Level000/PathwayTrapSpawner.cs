@@ -25,11 +25,12 @@ public class PathwayTrapSpawner : MonoBehaviour {
     IEnumerator RaisePathway()
     {
 
-        yield return new WaitForSeconds(1f);
+        // moved objects closer so don't really need this anymore
+        // yield return new WaitForSeconds(1f);
 
         while(transform.localPosition != Vector3.zero)
         {
-            transform.localPosition = Vector3.MoveTowards(transform.localPosition, Vector3.zero, 300f * Time.deltaTime);
+            transform.localPosition = Vector3.MoveTowards(transform.localPosition, Vector3.zero, 600f * Time.deltaTime);
             yield return null;
             //yield return new WaitForSeconds(0.006f);
         }

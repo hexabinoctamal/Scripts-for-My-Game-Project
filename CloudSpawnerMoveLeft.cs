@@ -6,17 +6,19 @@ public class CloudSpawnerMoveLeft : MonoBehaviour {
     [SerializeField]
     GameObject theClouds;
 
+    Transform boxSize;
 
 	// Use this for initialization
 	void Start () 
     {
+        boxSize = GetComponent<Transform>();
         InvokeRepeating("CloudSpawner", 0f, 4f);
         //CloudSpawner();
 	}
 
     void CloudSpawner()
     {
-        Transform boxSize = GetComponent<Transform>();
+        //Transform boxSize = GetComponent<Transform>();
 
         //Debug.Log(boxSize.localScale);
         /*
@@ -38,16 +40,17 @@ public class CloudSpawnerMoveLeft : MonoBehaviour {
                         transform.position.z + Random.Range(-boxSize.localScale.z/2, boxSize.localScale.z/2));
 
 
-        GameObject clone = (GameObject)Instantiate(theClouds, randomSpotWithinGrid, Quaternion.Euler(-90, 90, 0));
+        //GameObject clone = (GameObject)Instantiate(theClouds, randomSpotWithinGrid, Quaternion.Euler(-90, 90, 0));
             
-        StartCoroutine(CloudMoving(clone));
+        StartCoroutine(CloudMoving(randomSpotWithinGrid));
         
-        Destroy(clone, 70f);
+        //Destroy(clone, 70f);
     }
 
-    IEnumerator CloudMoving(GameObject cloud)
+    IEnumerator CloudMoving(Vector3 randomSpot)
     {
-        float randomSpeedPerCloud = Random.Range(0.5f, 2f);
+        GameObject cloudClone = (GameObject)Instantiate(theClouds, randomSpot, Quaternion.Euler(-90, 90, 0));
+        float randomSpeedPerCloud = Random.Range(0.3f, 1.5f);
         //Debug.Log(randomSpeedPerCloud);
 
         // ******************************************************************
@@ -58,20 +61,19 @@ public class CloudSpawnerMoveLeft : MonoBehaviour {
         // therefore this isn't reliable. so redo this part
         // ******************************************************************
         // ******************************************************************
+        // Update 12/17/2015
+        // I updated it so now it relies on a distance constraint 
+        // instead of a time constraint on when to destroy itself or reach the end.
+        // It is now flexible to other computers...I think.
 
 
-        //this loop will finish roughly around 16-17 seconds when i < 1000.
-        // ~34 seconds when i < 2000, ~41 at i < 2500, ~67 at i < 4000
-        for (int i = 0; i < 4000 ; i++)
+        while(cloudClone.transform.localPosition.x >= -1500f)
         {
-            //Debug.Log("Looping");
-            cloud.transform.position += Vector3.left * randomSpeedPerCloud;
-            yield return new WaitForSeconds(0.01f);
-            //performing this loop at 1/100 a second
-            //pretty cool stuff
-
+            cloudClone.transform.position += Vector3.left * randomSpeedPerCloud;
+            yield return new WaitForSeconds(1f / 120); //cycles at 120hz
         }
 
+        Destroy(cloudClone);
         Debug.Log("done looping at " + Time.time);
         
     }
