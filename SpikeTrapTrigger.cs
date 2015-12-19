@@ -4,7 +4,7 @@ using System.Collections;
 public class SpikeTrapTrigger : MonoBehaviour {
 
     [SerializeField]
-    private GameObject[] theSpikes = new GameObject[10];
+    GameObject[] theSpikes = new GameObject[10];
 
     GameObject[] destroySpikes = new GameObject[10];
 
@@ -24,8 +24,11 @@ public class SpikeTrapTrigger : MonoBehaviour {
             {
                 //works fine at the moment
                 destroySpikes[i] = Instantiate(theSpikes[i],
-                    new Vector3(transform.position.x - transform.localScale.x/2 + (float)(i+1)*8f, transform.position.y + dropHeight, transform.position.z + transform.localScale.z/2 ),
+                    new Vector3(transform.position.x - transform.localScale.x/2 + (float)(i+1)*8f, 
+                        transform.position.y + dropHeight, 
+                        transform.position.z + transform.localScale.z/2 ),
                     Random.rotation) as GameObject;
+
                 destroySpikes[i].GetComponentInChildren<Rigidbody>().velocity = Vector3.down * dropSpeed;
             }
         }

@@ -8,9 +8,9 @@ public class PathwayTrapSpawner : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
     {
-        initialPosition = new Vector3(0f, -100f, 0f);
-        //start with this position initially so it can pop up later
-        transform.localPosition = initialPosition;
+        initialPosition = new Vector3(transform.localPosition.x, -100f, transform.localPosition.z);
+        //start with its current position but lowered all the the time.
+        transform.localPosition = new Vector3(transform.localPosition.x, -100f, transform.localPosition.z);
 	}
     
     void OnTriggerEnter(Collider obj)
@@ -27,10 +27,12 @@ public class PathwayTrapSpawner : MonoBehaviour {
 
         // moved objects closer so don't really need this anymore
         // yield return new WaitForSeconds(1f);
+        Vector3 raisedPosition = new Vector3(transform.localPosition.x, 0f, transform.localPosition.z);
 
-        while(transform.localPosition != Vector3.zero)
+        //while the object hasn't raised up
+        while(transform.localPosition.y != 0f)
         {
-            transform.localPosition = Vector3.MoveTowards(transform.localPosition, Vector3.zero, 600f * Time.deltaTime);
+            transform.localPosition = Vector3.MoveTowards(transform.localPosition, raisedPosition, 600f * Time.deltaTime);
             yield return null;
             //yield return new WaitForSeconds(0.006f);
         }
@@ -43,6 +45,7 @@ public class PathwayTrapSpawner : MonoBehaviour {
     {
         yield return new WaitForSeconds(3f);
 
+        //while object is not at the initial starting position
         while(transform.localPosition != initialPosition)
         {
             transform.localPosition = Vector3.MoveTowards(transform.localPosition, initialPosition, 100 * Time.deltaTime);
