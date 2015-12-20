@@ -24,6 +24,7 @@ public class PlayerHealth : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () 
     {
+        //Debug.Log("Playerscrpt : " + GetIsPlayerDead());
         //if the player is dead, run this
         if (!isDead)
         {
