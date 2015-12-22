@@ -127,7 +127,7 @@ public class PlayerController : MonoBehaviour {
     //this will stop it from bouncing
     void OnTriggerEnter(Collider obj)
     {
-        if (obj.gameObject.CompareTag("BallLock"))
+        if (obj.CompareTag("BallLock"))
         {
             //print("lock");
             GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY;

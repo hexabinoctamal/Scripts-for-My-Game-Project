@@ -9,7 +9,7 @@ public class CubeTrigger : MonoBehaviour {
 
 	void OnTriggerEnter(Collider obj)
 	{
-        if (obj.gameObject.CompareTag("Player"))
+        if (obj.CompareTag("Player"))
 		{
 			print ("IN");
             destroyBlocks = Instantiate(theBlocks, transform.position, Quaternion.identity) as GameObject;
@@ -18,7 +18,7 @@ public class CubeTrigger : MonoBehaviour {
 
 	void OnTriggerExit(Collider obj)
 	{
-		if(obj.gameObject.CompareTag("Player"))
+		if(obj.CompareTag("Player"))
 		{
 			print ("GONE");
             Destroy(destroyBlocks, 2f);
