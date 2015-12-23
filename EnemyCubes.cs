@@ -41,6 +41,6 @@ public class EnemyCubes : MonoBehaviour {
 		GameObject clone = (GameObject)Instantiate (cube, randomSpot , Random.rotation);
         //clone.GetComponent<Rigidbody>().velocity = Random.insideUnitSphere * 100f;
         clone.GetComponent<Rigidbody>().velocity = Vector3.down * 80f;
-		Destroy(clone, 1.15f);
+		Destroy(clone, 1.15f); 
 	}
 }

@@ -62,13 +62,13 @@ public class PlayerController : MonoBehaviour {
         //if you are not on the ground
         if (!IsGrounded())
         {
-            Debug.Log("I am up");
-            move.y = -15f;
+            //Debug.Log("I am up");
+            move.y = -15f; // -15 - pushes the player back down enough to where it is not too floaty but also noticeable.
         }
         else
         {
             //keep the ball grounded
-            Debug.Log("On Ground");
+            //Debug.Log("On Ground");
             move.y = 0f;
         }
 
@@ -79,14 +79,16 @@ public class PlayerController : MonoBehaviour {
 
         //restrict the ball from moving to the sides to a certain speed
         //can't move left or right if you're not grounded
-        if (player.velocity.x < maxLeftAndRight && 
-            player.velocity.x > -maxLeftAndRight && 
+        if (player.velocity.x < maxLeftAndRight &&
+            player.velocity.x > -maxLeftAndRight &&
             IsGrounded())
-
+        {
             MoveLeftRight();
+        }
         else
+        {
             move.x = 0f;
-
+        }
        
 
         player.AddForce(move);

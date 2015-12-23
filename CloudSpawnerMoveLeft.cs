@@ -70,7 +70,8 @@ public class CloudSpawnerMoveLeft : MonoBehaviour {
         while(cloudClone.transform.localPosition.x >= -1500f)
         {
             cloudClone.transform.position += Vector3.left * randomSpeedPerCloud;
-            yield return new WaitForSeconds(1f / 120); //cycles at 120hz
+            yield return new WaitForSeconds(1f / 120); //cycles at 120hz 
+            // 120 because it seems smoother
         }
 
         Destroy(cloudClone);

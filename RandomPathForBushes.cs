@@ -10,7 +10,6 @@ public class RandomPathForBushes : MonoBehaviour {
     PlayerHealth playerStatus;
 
     bool setPathOnceAfterDeath = false;
-    bool t = true;
 
 	// Use this for initialization
 	void Start () 

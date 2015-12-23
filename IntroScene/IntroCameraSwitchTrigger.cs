@@ -43,7 +43,11 @@ public class IntroCameraSwitchTrigger : MonoBehaviour {
 
     IEnumerator WaitToLoadLevel()
     {
-        yield return new WaitForSeconds(1.65f);
+        yield return new WaitForSeconds(1.65f); // 1.65 seconds is the number I found to be good when switching to the next level
+        //this is because the particles the flow behind the ball take around 1.5 seconds to die out.
+        //so when it hits 1.65, the particles are really small and or already gone from the scene.
+        //now when the scene switches, you wont see a big particle in the screen but small/no particles.
+
         currentCamera = 0; // reset counter just incase we go back to the level
         Application.LoadLevel(Application.loadedLevel + 1);
     }
