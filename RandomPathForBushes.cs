@@ -10,18 +10,19 @@ public class RandomPathForBushes : MonoBehaviour {
     PlayerHealth playerStatus;
 
     bool setPathOnceAfterDeath = false;
+    bool t = true;
 
 	// Use this for initialization
 	void Start () 
     {
         SetAllChildrenToInactive();
         SpawnRandomPath();
-	
+        StartCoroutine(CheckPlayer());
 	}
 
-    void Update()
-    {
 
+    IEnumerator CheckPlayer()
+    {
         /* This works by know that initially my player is not dead 
          * so the status of player is false. In order for the random path to generate once
          * after death once, I made setPathOnceAfterDeath. If player dies, I want to make sure
@@ -38,18 +39,29 @@ public class RandomPathForBushes : MonoBehaviour {
          * 
          */
 
-        if (!playerStatus.GetIsPlayerDead() && setPathOnceAfterDeath)
-        {
-            SetAllChildrenToInactive();
-            SpawnRandomPath();
-        }
-        else if(playerStatus.GetIsPlayerDead())
-        {
-            setPathOnceAfterDeath = true;
-        }
+        /* I initially had this in the update method but realized I can save CPU cycles by using coroutines.
+         * In this case, it will only do the checks every 1 second so now it is more efficient in a way.
+         * Note that this is an infinite loop, so I'll need to do some more testing on this later one.
+         * Some cases might be when changing between levels.
+         */
+        
 
+        while(true)
+        {
+            Debug.Log("checking player");
+            if (!playerStatus.GetIsPlayerDead() && setPathOnceAfterDeath)
+            {
+                SetAllChildrenToInactive();
+                SpawnRandomPath();
+            }
+            else if (playerStatus.GetIsPlayerDead())
+            {
+                setPathOnceAfterDeath = true;
+            }
+
+            yield return new WaitForSeconds(1f);
+        }
     }
-
 
     //Just in case I miss setting one of them to inactive
     //this will take care of it on start up
@@ -78,7 +90,6 @@ public class RandomPathForBushes : MonoBehaviour {
                 Debug.Log("Path " + (i + 1) + " is set active");
             }
         }
-
         setPathOnceAfterDeath = false;
     }
 
